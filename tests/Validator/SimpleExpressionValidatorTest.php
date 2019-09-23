@@ -21,6 +21,7 @@ class SimpleExpressionValidatorTest extends TestCase
 
     /**
      * @see SimpleExpressionValidator::validate()
+     * @see SimpleExpressionValidator::validateParentheses()
      * @throws InvalidExpressionException
      */
     public function testFail(): void
@@ -34,6 +35,7 @@ class SimpleExpressionValidatorTest extends TestCase
 
     /**
      * @see SimpleExpressionValidator::validate()
+     * @see SimpleExpressionValidator::validateParentheses()
      * @throws InvalidExpressionException
      */
     public function testOk(): void
@@ -43,5 +45,33 @@ class SimpleExpressionValidatorTest extends TestCase
         $this->validator->validate($expression);
 
         $this->assertTrue(true);
+    }
+
+    /**
+     * @param string $expression
+     *
+     * @see SimpleExpressionValidator::validate()
+     * @see SimpleExpressionValidator::validateInput()
+     * @dataProvider casesTestInput
+     *
+     * @throws InvalidExpressionException
+     */
+    public function testInput(string $expression)
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->validator->validate($expression);
+    }
+
+    /**
+     * @return array
+     */
+    public function casesTestInput(): array
+    {
+        return [
+            'chars' => ['(a)'],
+            'bad symbol#1' => [':'],
+            'bad symbol#2' => ['/'],
+            'bad symbol#3' => ['*'],
+        ];
     }
 }

@@ -1,0 +1,25 @@
+{
+    "name": "thestuck/01",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "The Stuck",
+            "email": "info@example.com"
+        }
+    ],
+    "description": "Expression validator",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">7.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TheStuck\\": "src/TheStuck",
+            "Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.4@dev"
+    }
+}
